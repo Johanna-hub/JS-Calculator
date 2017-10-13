@@ -39,27 +39,18 @@ operator[l].addEventListener("click", function(){
 );
 }
 
-//operator[l].addEventListener("click", function(){
-  //if(sum.match(/\d/)){
-    //final.insertAdjacentHTML('beforeend', oKeysTwo.trim())
-  //}}, false);
-//}
-
-//decimal point button - should only be used once per number
-/*var decimal = document.getElementById(".");
+//decimal point button - still need to fix multiple decimals in a number like 8.8.8.8
+var decimal = document.getElementById(".");
 decimal.addEventListener("click", function(){
   var prevChar = sum.charAt(sum.length-1);
-  if(prevChar.match(/[^.]/)){
+  if(prevChar.match(/[^\.]/) || sum.length===0){
     final.insertAdjacentHTML('beforeend', ".")
   }}, false)
 decimal.addEventListener("click", function(){
   var decChar = sum.charAt(sum.length-1);
-  if(decChar.match(/[\.]/)){
+  if(decChar.match(/[^\.]/) || sum.length===0){
     sum+="."
-  }}, false);*/
-  var decimal = document.getElementById(".");
-  decimal.addEventListener("click", function(){sum+="."}, false);
-  decimal.addEventListener("click", function(){final.insertAdjacentHTML('beforeend', ".")}, false)
+  }}, false);
 
 //Display the result on calculator
   var equation = document.getElementById("equals");
