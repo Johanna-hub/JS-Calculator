@@ -4,8 +4,8 @@ var sum = "";
 var final = document.getElementById("input");
 
 //Number buttons - display number pressed on calculator display and add them to string sum, (also includes minus sign)
-  var button = document.getElementsByClassName("number-key");
-  var keys = [];
+var button = document.getElementsByClassName("number-key");
+var keys = [];
   for (var i = 0; i < button.length; i++){
     keys.push(button[i].textContent);
   }
@@ -15,42 +15,60 @@ var final = document.getElementById("input");
       final.insertAdjacentHTML('beforeend', keysTwo.trim())}, false);
     button[j].addEventListener("click", function(){
       sum+=keysTwo.trim()}, false);
-    }
+  }
 
 //operator buttons - only allowed to be used if there is a digit beforehand and cannot be used in a row
 var operator = document.getElementsByClassName("function-key");
 var oKeys = [];
-for (var k = 0; k < operator.length; k++){
-  oKeys.push(operator[k].textContent);
-}
-for (var l = 0; l < oKeys.length; l++){
-  let oKeysTwo = oKeys[l]
-  operator[l].addEventListener("click", function(){
-    var lastLastChar = sum.charAt(sum.length-1);
-    if(lastLastChar.match(/[^\=\+\*\\\\\-\s\.]/)){
-      final.insertAdjacentHTML('beforeend', oKeysTwo.trim())
-    }}, false);
+  for (var k = 0; k < operator.length; k++){
+    oKeys.push(operator[k].textContent);
+   }
+  for (var l = 0; l < oKeys.length; l++){
+    let oKeysTwo = oKeys[l]
+    operator[l].addEventListener("click", function(){
+      var lastLastChar = sum.charAt(sum.length-1);
+      if(lastLastChar.match(/[^\=\+\*\\\\\-\s\.]/)){
+        final.insertAdjacentHTML('beforeend', oKeysTwo.trim())
+      }
+    }, false);
+    operator[l].addEventListener("click", function(){
+      var lastChar = sum.charAt(sum.length-1);
+      if(lastChar.match(/[^\=\+\*\\\\\-\s\.]/)){
+        sum+=oKeysTwo.trim()
+      }
+    }, false );
+   }
 
-operator[l].addEventListener("click", function(){
-  var lastChar = sum.charAt(sum.length-1);
-  if(lastChar.match(/[^\=\+\*\\\\\-\s\.]/)){
-    sum+=oKeysTwo.trim()
-  }}, false
-);
-}
+/*subtraction button - can be used before number to make a negative number
+   var subtract = document.getElementById("minus");
+   subtract.addEventListener("click", function(){sum+="-"}, false);
+   subtract.addEventListener("click", function(){final.insertAdjacentHTML('beforeend', "-")}, false)*/
 
-//decimal point button - still need to fix multiple decimals in a number like 8.8.8.8
+//decimal point button - can not be input repeatedly, however can be used without 0 in front if that is user preference
 var decimal = document.getElementById(".");
 decimal.addEventListener("click", function(){
-  var prevChar = sum.charAt(sum.length-1);
-  if(prevChar.match(/[^\.]/) || sum.length===0){
-    final.insertAdjacentHTML('beforeend', ".")
-  }}, false)
+  //allow . to be input as first character
+  if (sum.length===0){
+    final.insertAdjacentHTML('beforeend', ".");
+  //allow . to be put in first time
+  } else if(sum.match(/^\d+$/)){
+    final.insertAdjacentHTML('beforeend', ".");
+  //allow . to be put in after subsequent operations and whole numbers
+  } else if (sum.match(/([\+\*\\\\\-]\d*)$/)){
+    final.insertAdjacentHTML('beforeend', ".");
+  }
+}, false)
+
 decimal.addEventListener("click", function(){
-  var decChar = sum.charAt(sum.length-1);
-  if(decChar.match(/[^\.]/) || sum.length===0){
+  console.log("sum2 =" + sum);
+  if (sum.length===0){
+    sum+=".";
+  } else if (sum.match(/^\d+$/)){
+    sum+=".";
+  } else if (sum.match(/([\+\*\\\\\-]\d*)$/)){
     sum+="."
-  }}, false);
+  }
+}, false);
 
 //Display the result on calculator
   var equation = document.getElementById("equals");
