@@ -6,83 +6,109 @@
 
 html {
   height: 100%;
+  	font-family: "Josefin Sans", sans-serif;
+  	color: #333;
+  	/*better rendering of light fonts on dark backgrounds*/
+  	-webkit-font-smoothing: antialiased;
+  	font-weight: 400;
+  	height: 100%;
+  	margin:0;
+    font-size: 1.5em;
 }
 
 body {
-  background-color: gray;
+  background-color: rgba(124, 160, 129, 0.27);
   height: 100%;
   margin-top: 5%;
 }
 
+div {
+  float: left;
+}
+
+a {
+	text-decoration: none;
+	border-bottom: 1px solid;
+	color: #333;
+}
+
 .calculator-base {
   width: 65%;
-  height: 50%;
+  height: 75%;
   margin: 0 auto;
 }
 
 .clear-key {
-    display: inline-block;
-    width: 48.5%;
-    height: 25%;
-    text-align: center;
-    padding: 1% 0;
-    border-style: groove;
-    border-color: gray;
-    margin: 0;
-    vertical-align: top;
-    background-color: blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 20%;
+    border-top: 1px;
+    border-bottom: 1px;
+    border-left: 1px;
+    border-right: 1px;
+    border-style: solid;
+    border-color: black;
+    background-color: rgba(38, 114, 114, 0.46);
 }
 
-.number-key, .decimal-key {
-  display: inline-block;
-  width: 24%;
-  height: 25%;
-  text-align: center;
-  padding: 1% 0;
-  border-style: groove;
-  border-color: gray;
-  margin: 0;
-  vertical-align: top;
+.number-key, .decimal-key, .minus-key {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25%;
+  height: 20%;
+  padding: 3.5% 11%;
+  border: 1px;
+  border-style: solid;
+  border-color: black;
+  background-color: rgba(250, 171, 35, 0.6);
 }
 
 .number {
   padding: 15% 0;
 }
 
-.function-key {
-background-color: orange;
-display: inline-block;
-width: 24%;
-height: 25%;
-text-align: center;
-padding: 1% 0;
-border-style: groove;
-border-color: gray;
-margin: 0;
-vertical-align: top;
+.function-key, .equals-key {
+background-color: rgba(114, 94, 22, 0.58);
+display: flex;
+align-items: center;
+justify-content: center;
+width: 25%;
+height: 20%;
+border: 1px;
+border-style: solid;
+border-color: black;
 }
 
 .function {
-  background-color: orange;
+  background-color: rgba(114, 94, 22, 0.58);
 }
 
-.equals-key{
+/*.equals-key{
   background-color: orange;
   display: inline-block;
-  width: 24%;
+  width: 25%;
   height: 25%;
   text-align: center;
   padding: 1% 0;
-  border-style: groove;
-  border-color: gray;
+  border: 1px;
+  border-style: solid;
+  border-color: black;
   margin: 0;
   vertical-align: top;
-}
+}*/
 
 .result {
-  background-color: red;
+  background-color: rgba(236, 3, 30, 0.74);
 }
 
 span {
 padding: 2% 0;
+}
+
+footer {
+  margin-top: 4%;
+  margin-left:6%
 }
