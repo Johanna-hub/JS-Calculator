@@ -3,16 +3,19 @@ var sum = "";
 //Calculator display of numbers being inputted
 var final = document.getElementById("input");
 
-//Number buttons - display number pressed on calculator display and add them to string sum, (also includes minus sign)
+//Number buttons
 var button = document.getElementsByClassName("number-key");
 var keys = [];
+//Get the button number from html and push to keys array
   for (var i = 0; i < button.length; i++){
     keys.push(button[i].textContent);
   }
   for (var j = 0; j < keys.length; j++){
     let keysTwo = keys[j]
+    //get number displayed on calculator display
     button[j].addEventListener("click", function(){
       final.insertAdjacentHTML('beforeend', keysTwo.trim())}, false);
+    //add number to string sum
     button[j].addEventListener("click", function(){
       sum+=keysTwo.trim()}, false);
   }
@@ -39,18 +42,13 @@ var oKeys = [];
     }, false );
    }
 
-/*subtraction button - can be used before number to make a negative number
-   var subtract = document.getElementById("minus");
-   subtract.addEventListener("click", function(){sum+="-"}, false);
-   subtract.addEventListener("click", function(){final.insertAdjacentHTML('beforeend', "-")}, false)*/
-
 //decimal point button - can not be input repeatedly, however can be used without 0 in front if that is user preference
 var decimal = document.getElementById(".");
 decimal.addEventListener("click", function(){
   //allow . to be input as first character
   if (sum.length===0){
     final.insertAdjacentHTML('beforeend', ".");
-  //allow . to be put in first time
+  //allow . to be put in first time after a whole number
   } else if(sum.match(/^\d+$/)){
     final.insertAdjacentHTML('beforeend', ".");
   //allow . to be put in after subsequent operations and whole numbers
@@ -60,7 +58,6 @@ decimal.addEventListener("click", function(){
 }, false)
 
 decimal.addEventListener("click", function(){
-  console.log("sum2 =" + sum);
   if (sum.length===0){
     sum+=".";
   } else if (sum.match(/^\d+$/)){
@@ -126,3 +123,24 @@ function equals(sum){
    }
    return endResult;
 }
+
+/*minus button - my attempt at trying to get negative numbers to work but then saw the FreeCodeCamp calculator didn't deal with them anyway!
+   var subtract = document.getElementById("minus");
+   subtract.addEventListener("click", function(){
+     //minus sign can be used as first character to signify negative number
+     if (sum.length===0){
+     final.insertAdjacentHTML('beforeend', "-");
+     }
+     //minus sign cannot be used twice in a row
+     else if (sum.match(/^\d+$|^\d+$|\d[\d\\\\\\\\\+\*-](?!-)$|\d$/)){
+     final.insertAdjacentHTML('beforeend', "-");
+     }
+   }, false)
+
+   subtract.addEventListener("click", function(){
+     if(sum.match(/^\d+$|^\d+$|\d[\d\\\\\\\\\+\*-](?!-)$|\d$/)){
+     sum+="-";
+     } else if(sum.length===0){
+       sum+="-";
+     }
+   }, false);*/
